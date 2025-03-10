@@ -92,14 +92,6 @@ def create_embedding_model(model_name=None, pinecone_api_key=None, index_name=No
         index_name=index_name
     )
 
-# Create a default instance for convenience
-default_model = create_embedding_model()
-
-# Convenience functions that use the default instance
-get_embedding = default_model.get_embedding
-search = default_model.search
-add_embedding = default_model.add_embedding
-
 # Alternative approach to make dependency injection clearer
 class EmbeddingService:
     def __init__(self, embedding_model=None):
