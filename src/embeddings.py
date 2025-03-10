@@ -8,7 +8,6 @@ class EmbeddingModel:
                  model_name=None, 
                  pinecone_api_key=None, 
                  index_name=None):
-        # Get values from parameters or environment variables
         self.model_name = model_name or os.environ.get('MODEL_NAME', 'intfloat/e5-base-v2')
         self.pinecone_api_key = pinecone_api_key or os.environ.get('PINECONE_API_KEY')
         self.index_name = index_name or os.environ.get('INDEX_NAME', 'semantic-search')
@@ -84,7 +83,6 @@ class EmbeddingModel:
         except Exception as e:
             raise
 
-# Create a factory function that returns a configured model instance
 def create_embedding_model(model_name=None, pinecone_api_key=None, index_name=None):
     return EmbeddingModel(
         model_name=model_name,
@@ -92,7 +90,6 @@ def create_embedding_model(model_name=None, pinecone_api_key=None, index_name=No
         index_name=index_name
     )
 
-# Alternative approach to make dependency injection clearer
 class EmbeddingService:
     def __init__(self, embedding_model=None):
         self.model = embedding_model or create_embedding_model()
